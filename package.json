@@ -1,0 +1,13 @@
+{
+  "name": "evay-scaffold",
+  "version": "1.0.0",
+  "description": "a scaffold test",
+  "bin": {
+    "evay-scaffold": "bin/inex.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

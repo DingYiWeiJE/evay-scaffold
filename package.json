@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "evay-scaffold-lib": "^1.0.1",
+    "npmlog": "^7.0.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

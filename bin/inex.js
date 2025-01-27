@@ -4,6 +4,7 @@ const yargs = require('yargs');
 const dedent = require('dedent'); // 用来去除字符串中的换行符
 const pkg = require('../package.json');
 const {hideBin} = require('yargs/helpers');
+const log = require("npmlog");
 
 const arg = hideBin(process.argv);
 const argv = process.argv.slice(2);
@@ -21,7 +22,7 @@ cli
   .recommendCommands()
   // 命令输入错误时候的处理
   .fail((err) => {
-    console.log(err)
+    log.error('error', err)
   })
   // 限制至少需要输入几个命令值。如果加了这个，在没有输入指令的时候，就会在控制台中有所提示
   .demandCommand(1, 'A command is required. Pass --help to see all available commands and options')

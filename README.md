@@ -250,7 +250,7 @@ cli
   .argv;
 ````
 
-##  .command
+##  command
 
 ```js
 // 添加指令 command
@@ -301,5 +301,27 @@ dingyiwei@EvaydeMacBook-Pro evay-scaffold % evay-scaffold init -V -d -n dingkail
   })
 ```
 
+## 添加自定义参数
 
+```js
+// 解析参数，并将这些参数传入给arg
+  // .argv;
+  // 如果想要自定义的添加一些默认参数，就不要用.argv
+  .parse(argv, context)
+```
+
+```shell
+dingyiwei@EvaydeMacBook-Pro evay-scaffold % evay-scaffold init dingkaile
+{
+  _: [ 'init' ],
+  evayVersion: '1.0.1',
+  '$0': 'evay-scaffold',
+  name: 'dingkaile',
+  n: 'dingkaile'
+}
+dingyiwei@EvaydeMacBook-Pro evay-scaffold % 
+
+```
+
+这样就在每一个命令当中都提供evayVersion: '1.0.1', 参数信息
 

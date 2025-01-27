@@ -2,11 +2,17 @@
 
 const yargs = require('yargs');
 const dedent = require('dedent'); // 用来去除字符串中的换行符
+const pkg = require('../package.json');
 const {hideBin} = require('yargs/helpers');
 
 const arg = hideBin(process.argv);
-
+const argv = process.argv.slice(2);
 const cli = yargs(arg)
+
+const context = {
+  evayVersion: pkg.version,
+}
+
 
 cli
   // 语言设置 如果不设置，就是按照当地语言自适应
@@ -87,4 +93,7 @@ cli
       console.log(argv)
     }
   })
-  .argv;
+  // 解析参数，并将这些参数传入给arg
+  // .argv;
+  // 如果想要自定义的添加一些默认参数，就不要用.argv
+  .parse(argv, context)

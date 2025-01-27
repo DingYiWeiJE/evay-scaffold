@@ -9,5 +9,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "evay-scaffold-lib": "^1.0.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "dedent": "^1.5.3"
+  }
 }

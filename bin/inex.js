@@ -14,6 +14,8 @@ const context = {
   evayVersion: pkg.version,
 }
 
+require('evay-scaffold-lib').sum(3, 6)
+
 
 cli
   // 语言设置 如果不设置，就是按照当地语言自适应

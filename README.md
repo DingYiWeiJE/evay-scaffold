@@ -108,6 +108,22 @@ npm install -g evay-scaffold
 
 
 
+## File链接本地库
+
+```json
+"dependencies": {
+    "evay-scaffold-lib": "file:../evay-scaffold-lib",
+    "npmlog": "^7.0.1",
+    "yargs": "^17.7.2"
+  },
+```
+
+先在package.json中写好 file路径
+
+然后运行npm install
+
+这个时候就达到npm link 的效果了
+
 
 
 # 命令注册和参数解析

@@ -81,7 +81,7 @@ cli
       })
     },
     (argv) => {
-      console.log(argv)
+      console.log('进行初始化的项目名称是：',argv.name)
     }
   )
   // 另一种书写方式：

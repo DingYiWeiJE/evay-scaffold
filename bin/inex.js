@@ -96,6 +96,44 @@ cli
       console.log(argv)
     }
   })
+  .command({
+    command: 'event-loop',
+    // 同时取多个别名
+    aliases: ['ev'],
+    describe: 'event loop test',
+    builder: (yargs) => {
+    },
+    handler: (argv) => {
+      console.log(argv)
+      console.log('start')
+      setTimeout(() => {
+        console.log('setTimeout')
+      })
+      new Promise(() => {
+        let chain = Promise.resolve()
+        for (let i = 0; i < 3; i++) {
+          chain = chain.then(() => {
+            console.log(`inside chain ${i}`)
+          })
+        }
+        // chain.then(() => {
+        //   console.log(`inside chain 1`)
+        // })
+        // chain.then(() => {
+        //   console.log(`inside chain 2`)
+        // })
+        // chain.then(() => {
+        //   console.log(`inside chain 3`)
+        // })
+      })
+      let chain = Promise.resolve()
+      chain.then(() => {
+        console.log('outside chain')
+      })
+      console.log('end');
+      
+    }
+  })
   // 解析参数，并将这些参数传入给arg
   // .argv;
   // 如果想要自定义的添加一些默认参数，就不要用.argv

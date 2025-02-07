@@ -341,3 +341,5 @@ dingyiwei@EvaydeMacBook-Pro evay-scaffold %
 
 这样就在每一个命令当中都提供evayVersion: '1.0.1', 参数信息
 
+# lerna源码心得
+

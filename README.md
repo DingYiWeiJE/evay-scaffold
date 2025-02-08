@@ -343,3 +343,6 @@ dingyiwei@EvaydeMacBook-Pro evay-scaffold %
 
 # lerna源码心得
 
+## importLocal
+
+**目的：** 当全局安装了一个lerna；然后当前文件夹也安装了一个lerna的时候；这个时候运行lerna。 能够就近原则，指向当前文件夹下的lerna

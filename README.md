@@ -346,3 +346,145 @@ dingyiwei@EvaydeMacBook-Pro evay-scaffold %
 ## importLocal
 
 **目的：** 当全局安装了一个lerna；然后当前文件夹也安装了一个lerna的时候；这个时候运行lerna。 能够就近原则，指向当前文件夹下的lerna
+
+
+
+### pkg-dir
+
+```js
+const pkgDir = require('pkg-dir');
+
+const globalDir = pkgDir.sync(path.dirname(filename));
+```
+
+pkgDir 会获取到包含package.json的上级目录， 因为有时候源码可能放在bin当中或者lib当中。它会逐级向上找，一直找到package.json的目录
+
+
+
+```js
+const findUp = require('find-up');
+
+const fp = findUp.sync('package.json', {cwd})
+```
+
+通过findup这个库来找到package.json的所在目录
+
+
+
+```js
+const locatePath = require('locate-path');
+
+const file = locatePath.sync(filenames, {cwd: dir});
+```
+
+通过locatePath这个库来寻找当前目录下是否有这个文件存在
+
+
+
+```js
+const pathExists = require('path-exists');
+
+pathExists.sync(path.resolve(options.cwd, el)
+```
+
+通过pathExists 去判定package.json是否存在于当前目录之下
+
+
+
+#### 抛出同步函数
+
+```js
+module.exports.sync = () => {....}
+```
+
+库中这种方式抛出的函数是同步函数，接收到的不会是一个promise
+
+### 获取文件所在的文件夹
+
+```js
+path.dirname("文件路径")
+```
+
+### path.resolve
+
+想要获取到当前目录直接 path.resolve('.') 就可以了
+
+```js
+path.resolve('/Users', '/sam', '..')   // '/'
+```
+
+这相当于一个cd的过程，
+
+```shell
+cd  /Users
+
+cd /sam
+
+cd ..
+```
+
+所以结果是  `D:`
+
+
+
+
+
+
+
+```js
+path.resolve('bar', 'doof', 'twxt.txt')
+```
+
+相当于在当前的文件夹目录下，拼接\bar\doof\twxt.txt
+
+所以结果是`D:\学无止境\lerna_source_code_reading\bar\doof\twxt.txt`
+
+
+
+```js
+path.resolve('bar', '/doof', 'dingkaile', 'jiao',"..", 'twxt.txt')
+```
+
+相当于先在当前目录中拼接了 bar
+
+然后cd  /doof
+
+这样就丢失了bar
+
+接着拼接dingkaile/jiao
+
+然后.. 又返回了上一层目录   dingkaile
+
+最后拼接 twxt.txt
+
+结果是` D:\doof\dingkaile\twxt.txt`
+
+
+
+### path.join
+
+与 `path.resolve()` 不同，`path.join()` 主要用于生成相对路径，而 `path.resolve()` 会返回一个绝对路径。
+
+也就是说不会在结果中的开始写上当前所在目录
+
+遇到`/`或者`\`会忽略掉，而不是执行cd操作
+
+
+
+```js
+path.join('bar', '/doof', 'dingkaile', 'jiao',"..", 'twxt.txt')
+```
+
+结果是`bar\doof\dingkaile\twxt.txt`
+
+```js
+path.join('bar', 'doof', 'twxt.txt')
+```
+
+结果是 `bar\doof\twxt.txt`
+
+```js
+path.join('/Users', '/sam', '..')
+```
+
+结果是`\Users`
